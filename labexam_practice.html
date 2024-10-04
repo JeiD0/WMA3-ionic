@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICE</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+</head>
+<body>
+    <ion-app>
+        <ion-header>
+            <ion-toolbar color="dark">
+                <ion-title>TITLE</ion-title>
+            </ion-toolbar>
+        </ion-header>
+        <ion-content>
+            <hr>
+            <!-- inputting NAME -->
+            <ion-item>
+                <ion-label position="floating"><b>Name</b></ion-label><br>
+                <ion-input id="name" type="text"
+                            label="Enter your name:" label-placement="floating" ></ion-input>
+            </ion-item>
+
+            <!-- inputting PRODUCT NAME -->
+            <ion-item>
+                <ion-label position="floating"><b>Product Name</b></ion-label><br>
+                <ion-input id="product" type="text"
+                            label="Enter Product Name:" label-placement="floating"></ion-input>
+            </ion-item>
+
+            <!-- inputting PRICE -->
+            <ion-item>
+                <ion-label position="floating"><b>Price</b></ion-label><br>
+                <ion-input id="price" type="number"
+                            label="Enter the price:" label-placement="floating"></ion-input>
+            </ion-item>
+
+            <!-- selection of DISCOUNT (yes or no) -->
+            <ion-item>
+                <ion-select id="discount" label="Do you want discount?" placeholder="Yes" justify="start" ionChange="">
+                    <ion-select-option value="yes">Yes</ion-select-option>
+                    <ion-select-option value="no">No</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <!-- Target discount in % -->
+            <ion-item id="target" style="display: none;">
+                <ion-input type="number" placeholder="Enter Discount (%)"></ion-input>
+            </ion-item>
+
+            <!-- BUTTON to submit -->
+            <ion-button color="dark" expand="block" onclick="submit()">SUBMIT</ion-button>
+            <hr>
+
+            <!-- OUTPUT -->
+            <ion-card id="result" style="display: none;">
+                <ion-card-title>Result</ion-card-title>
+                <ion-card-content id="output"></ion-card-content>
+            </ion-card>
+
+        </ion-content>
+    </ion-app>
+
+    <script>
+        //SELECT FUNCTION
+        document.getElementById('discount').addEventListener('ionChange', select);
+        function select() {
+            let discounted = document.getElementById('discount').value;
+            document.getElementById('output').innerHTML = discounted
+            
+            
+            if (discounted == "yes") {
+                target.style.display = "block"
+                
+                function calculate() {
+                    let target = document.getElementById("target").value;
+                    let price = document.getElementById("price").value;
+
+                    disTotal = (target / 100) * price;
+                    total = price - disTotal;
+                }
+                
+            } else {
+                target.style.display = "none"
+            }
+            
+        }
+
+        //SUBMIT FUNCTION
+        function submit() {
+            let name = document.getElementById('name').value;
+            let product = document.getElementById('product').value;
+            let price = parseFloat(document.getElementById('price').value);
+
+            
+
+            document.getElementById('result').style.display = "block";
+            document.getElementById('output').innerHTML = `
+            Name: <b>${name}</b> <br>
+            Product Name: <b>${product}</b> <br>
+            Price: <b>${price}</b> <br>
+            Discount: ${disTotal} <br>
+            Total Price: ${total}
+            `
+        }
+    </script>
+</body>
+</html>

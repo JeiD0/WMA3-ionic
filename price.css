@@ -1,0 +1,128 @@
+    /* Food Panda Inspired */
+    body {
+        font-family: 'Arial', sans-serif;
+    }
+    /* Used to add background and color to the header */
+    #header{ 
+        --background: #ff6584; 
+        color: white;  
+    }
+    /* Modifying text design */
+    #hTitle {
+        text-align:center;
+        font-size: 1.2rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    /* Modifying text design */
+    ion-label, #discount, #saveMethod {
+        color: #333;
+        font-weight: 600;
+    }
+    /* Modifying checkbox to align with the theme*/
+    ion-checkbox {
+        --size: 22px;
+        --checkbox-background-checked: #ff6584;
+    }
+    /* Modifying checkbox to align with the theme */
+    ion-checkbox::part(container) {
+        border-radius: 6px;
+        border: 2px solid #ff6584;
+    }
+
+    /* Modifying button to align with the theme */
+    /* positioning it at the bottom to be emphasized and to now overlap with the receipt */
+    ion-button {
+        --border-radius: 12px;
+        --padding-start: 16px;
+        --padding-end: 16px;
+        --padding-top: 12px;
+        --padding-bottom: 12px;
+        padding: 10px;
+        font-size: 1rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+        color: #ff6584;
+        --border-color: #ff6584;
+    }
+
+    /* Modifying button when it's hovered */
+    ion-button:hover {
+        --background: #ff6584;
+        color: #f8f8f8;
+    }
+
+    /* Modifying ion-card to show that receipt is seperated */
+    ion-card {
+        margin-top: 20px;
+        border-radius: 12px;
+        --box-shadow: 10px 10px 10px rgb(0, 0, 0); 
+    }
+
+    /* Used to align items,text, and elements */
+    #saved {
+        display: flex;  /* Flexbox to align items horizontally */
+        flex-direction: column; /* Stack elements vertically */
+    }
+    /* Used to align info-row class */
+    .info-row {
+        display: flex;  
+        justify-content: space-between; /* Space between title and subtitle */
+        width: 100%; /* Ensure it takes full width */
+        padding: 5px 0; /* Add some spacing between rows */
+    }
+    /* Used to design the card like a receipt */
+    ion-card-title {
+        font-family: monospace;
+        color: #060606;
+        font-weight: bold;
+        font-size: 17px;
+        text-transform: uppercase;
+    }
+    /* Used to design the card like a receipt and aligning the text on the right */
+    ion-card-subtitle {
+        margin-left: auto; 
+        text-align: right;
+        color: #333;
+        font-size: 17px;
+        font-family: monospace;
+        text-transform: uppercase;
+    }
+    /* Used to align and modify receipt title */
+    #receipt{
+        font-size: 1.2rem;
+        padding: 18px;
+        text-align: center;
+    }
+    /* Used to design the result if the checkbox is checked or saved */
+    #result {
+        background-color: #0d9a4a;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1rem;;
+    }
+    /* Used to design the result if the checkbox is not checked or saved */
+    #notSaved {
+        background-color: #ff2d55;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1rem;
+        --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+    }
+    /* Used to make sure that the button is emphasized */
+    ion-footer {
+        background-color: #ffffff;
+    }
+    /* Adding image for making it more like a food delivery app */
+    .food {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }

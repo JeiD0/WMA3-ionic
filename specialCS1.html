@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPECIAL CASE STUDY 1</title>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+</head>
+<body>
+    <ion-app>
+        <!-- HEADER -->
+        <ion-header>
+            <ion-toolbar color="dark">
+                <ion-title>Food Delivery Form</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content><br>
+            <!-- inputting DELIVERY ADDRESS -->
+            <ion-item>
+                <ion-label position="floating">Delivery Address</ion-label><br>
+                <ion-input id="deliveryAdd" 
+                        label="Enter your delivery address" 
+                        label-placement="floating" type="text"></ion-input>
+            </ion-item>
+
+            <!-- selection of PAYMENT METHOD -->
+            <ion-item>
+                <ion-select label="Payment Method" id="paymentMethod" placeholder="Credit Card" justify="start">
+                    <ion-select-option value="E-Wallet">E-wallet</ion-select-option>
+                    <ion-select-option value="Credit Card">Credit Card</ion-select-option>
+                    <ion-select-option value="Cash on Hand">Cash on Hand</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <!-- checkbox to SAVE payment method -->
+            <ion-item>
+                <ion-checkbox id="save" justify="start">Save Payment Method</ion-checkbox>
+            </ion-item>
+            
+            <!-- inputting FOOD PRICE --> <hr>
+             <ion-item>
+                <ion-input id="fprice" type="number">Food Price</ion-input>
+            </ion-item>
+
+            <!-- inputting CASH ON HAND --> <hr>
+            <ion-item id="cashinputItem" style="display: none;">
+                <ion-input id="cash" type="number">Cash Amount on Hand</ion-input>
+            </ion-item>
+
+            <!-- button to SUBMIT ORDER -->
+            <ion-button color="dark" expand="block" onclick="submit()">SUBMIT ORDER</ion-button>
+            <hr>
+
+            <!-- displaying RESULT -->
+            <ion-card>
+                <ion-card-content id="displayResult" style="display: none;"></ion-card-content>
+                <ion-card-content id="cashOnHandResult" style="display: none;"></ion-card-content>
+                <ion-card-footer id="savedPMethod" style="padding: 15px;"></ion-card-footer><hr>
+            </ion-card>
+
+        </ion-content>
+    </ion-app>
+
+    <script>
+        document.getElementById('paymentMethod').addEventListener('ionChange', toggleCash);
+        //Function if the payment is Cash on Hand
+        function toggleCash() {
+            let pMethod = document.getElementById('paymentMethod').value;
+            let cashItem = document.getElementById('cashinputItem');
+
+            //displays 'Cash on Hand' item
+            if (pMethod === 'Cash on Hand') {
+                document.getElementById('cashinputItem').style.display = "block";
+            }if (pMethod === 'Credit Card'|| 'E-wallet') {
+                document.getElementById('cashOnHandResult').style.display = "none";
+            }
+        }
+
+        //Function for submitting the food ordered
+        function submit() {
+            //input values
+            let address = document.getElementById('deliveryAdd').value;
+            let payMethod = document.getElementById('paymentMethod').value;
+            let savedPayment = document.getElementById('save').checked;
+            let foodPrice = parseFloat(document.getElementById('fprice').value);
+
+            //if payment method is saved
+            if (savedPayment) {
+                document.getElementById('displayResult').style.display = "block";
+                document.getElementById('displayResult').innerHTML = `
+                Delivery Address: <b>${address}</b> <br>
+                Payment Method: <b>${payMethod}</b> <br>
+                Food Price: <b>${foodPrice}</b>`
+
+                document.getElementById('savedPMethod').innerHTML = `<b>✅ Payment Method saved </b>`;
+            }
+            else {
+                document.getElementById('displayResult').style.display = "block";
+                document.getElementById('displayResult').innerHTML = `
+                Delivery Address: <b>${address}</b> <br>
+                Payment Method: <b>${payMethod}</b> <br>
+                Food Price: <b>${foodPrice}</b>`
+            }
+            calculate();
+        }
+
+        //Function to calculate the REMAINING CASH
+        function calculate() {
+            let foodPrice = parseFloat(document.getElementById('fprice').value);
+            let cashAmount = parseFloat(document.getElementById('cash').value);
+            let change = 0;
+            
+            change = cashAmount - foodPrice;
+            document.getElementById('cashOnHandResult').style.display = "block";
+            document.getElementById('cashOnHandResult').innerHTML = `
+            Cash: ${cashAmount} <br>
+            Remaining Cash: ${change}`
+        }
+
+    </script>
+</body>
+</html>
+
+
+
